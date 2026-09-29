@@ -519,7 +519,7 @@ const MessageBox = ({
         />
       )}
 
-      <div className="relative mx-3 md:mx-5">
+      <div className="relative mx-3 md:mx-5 pb-3">
         <div
           onClick={() => !channelLoading && editor && editor.commands.focus()}
           onDragOver={handleDragOver}

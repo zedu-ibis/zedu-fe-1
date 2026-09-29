@@ -41,7 +41,6 @@ export function AboutTabContainer({ setIsOpen }: any) {
     if (res?.status === 200 || res?.status === 201) {
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
       setIsOpen(false);
     }
@@ -271,7 +270,6 @@ export function PeopleTabContainer({ setIsOpen }: any) {
       });
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
       showSuccess(res?.data?.message || "People removed from channel");
       setSelectedIds([]);

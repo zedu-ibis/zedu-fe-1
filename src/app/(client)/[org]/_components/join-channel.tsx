@@ -24,7 +24,6 @@ const JoinChannel = () => {
     if (res?.status === 200 || res?.status === 200) {
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
       setButtonloading(false);
     } else {

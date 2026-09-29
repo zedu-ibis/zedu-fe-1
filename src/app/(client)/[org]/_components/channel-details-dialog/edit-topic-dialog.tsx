@@ -63,7 +63,6 @@ export const EditTopicDialog: React.FC<EditTopicDialogProps> = ({
     if (res?.status === 200 || res?.status === 201) {
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
       showSuccess(res?.data?.message);
       setButtonLoading(false);

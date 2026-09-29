@@ -23,7 +23,6 @@ const ArchivedChannel = () => {
     if (res?.status === 200 || res?.status === 201) {
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
     }
 

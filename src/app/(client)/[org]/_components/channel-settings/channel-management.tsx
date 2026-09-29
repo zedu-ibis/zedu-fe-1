@@ -302,7 +302,6 @@ const ChannelManagement = ({ channelId }: { channelId: string }) => {
       }
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
     } else {
       setRestrictOverride(null);
@@ -354,7 +353,6 @@ const ChannelManagement = ({ channelId }: { channelId: string }) => {
       syncChannel({ archived: nextArchived, isArchived: nextArchived });
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
     }
     setArchiving(false);

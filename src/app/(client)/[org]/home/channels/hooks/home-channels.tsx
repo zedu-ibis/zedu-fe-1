@@ -33,6 +33,19 @@ const UseHomeChannel = () => {
         });
       };
 
+      fetchChannels();
+    }
+  }, [
+    orgId,
+    state?.channelCallback,
+    dispatch,
+    state?.joinCallback,
+    state?.leaveCallback,
+  ]);
+
+  // FETCH ALL CHANNELS
+  useEffect(() => {
+    if (orgId && state?.token) {
       const fetchAllChannels = async () => {
         const res = await GetRequest(
           `/organisations/${orgId}/channels?limit=200`
@@ -48,16 +61,9 @@ const UseHomeChannel = () => {
         payload: !Array.isArray(state?.channels) || state.channels.length === 0,
       });
 
-      fetchChannels();
       fetchAllChannels();
     }
-  }, [
-    orgId,
-    state?.channelCallback,
-    dispatch,
-    state?.joinCallback,
-    state?.leaveCallback,
-  ]);
+  }, [orgId, dispatch]);
 
   useEffect(() => {
     if (orgId) {

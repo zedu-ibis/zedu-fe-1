@@ -41,7 +41,6 @@ export const UnarchiveChannelDialog: React.FC<EditTopicDialogProps> = ({
     if (res?.status === 200 || res?.status === 201) {
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
       // get the first channel and route the user there
       // const channel = state?.ungroupedChannels[0]

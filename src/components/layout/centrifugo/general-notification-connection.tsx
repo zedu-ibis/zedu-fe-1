@@ -25,7 +25,7 @@ const CLIENT_URL = process.env.NEXT_PUBLIC_CLIENT_URL;
 
 export default function GeneralNotificationConnection() {
   const { state, dispatch } = useContext(DataContext);
-  const { orgId } = state;
+  const { orgId, channelCallback } = state;
   const pathname = usePathname();
   const params = useParams();
   const id = params.id as string;
@@ -90,25 +90,28 @@ export default function GeneralNotificationConnection() {
         result?.section === "thread_message" &&
         result?.notification_type == "new_message"
       ) {
-        const message = result?.data;
-        const isChannelMessage =
-          message?.channel_type === "public" ||
-          message?.channel_type === "private";
+        // const message = result?.data;
+        // const isChannelMessage =
+        //   message?.channel_type === "public" ||
+        //   message?.channel_type === "private";
 
-        if (message?.channel_id && message?.thread_id && isChannelMessage) {
-          dispatch({
-            type: ACTIONS.PREPEND_CHANNEL_PREVIEW,
-            payload: message,
-          });
-        }
+        // if (message?.channel_id && message?.thread_id && isChannelMessage) {
+        //   dispatch({
+        //     type: ACTIONS.PREPEND_CHANNEL_PREVIEW,
+        //     payload: message,
+        //   });
+        //   dispatch({ type: ACTIONS.CHANNEL_CALLBACK, payload: !channelCallback });
+        //   console.log("channel message general notification", ctx?.data);
+        // }
 
-        if (message?.channel_id && message?.thread_id && !isChannelMessage) {
-          dispatch({
-            type: ACTIONS.PREPEND_HOME_DM_PREVIEW,
-            payload: message,
-          });
-          dispatch({ type: ACTIONS.HOME_DMS_CALLBACK });
-        }
+        // if (message?.channel_id && message?.thread_id && !isChannelMessage) {
+        //   dispatch({
+        //     type: ACTIONS.PREPEND_HOME_DM_PREVIEW,
+        //     payload: message,
+        //   });
+        //   dispatch({ type: ACTIONS.HOME_DMS_CALLBACK });
+        //   console.log("home dmgeneral notification", ctx?.data);
+        // }
 
         if (audioPlayer.current === null) return;
       }
@@ -131,6 +134,8 @@ export default function GeneralNotificationConnection() {
             thread_count: ctx.data.data.thread_count,
           },
         });
+        console.log("channel message general notification", ctx?.data);
+        dispatch({ type: ACTIONS.CHANNEL_CALLBACK });
       }
 
       // DM notifications
@@ -150,6 +155,8 @@ export default function GeneralNotificationConnection() {
             thread_count: ctx.data.data.thread_count,
           },
         });
+
+        dispatch({ type: ACTIONS.HOME_DMS_CALLBACK });
       }
 
       // Org threads sidebar badge (server-maintained unseen count)

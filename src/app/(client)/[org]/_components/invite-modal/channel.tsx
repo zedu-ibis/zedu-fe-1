@@ -164,7 +164,6 @@ const ChannelInviteModal = () => {
     if (res?.status === 200 || res?.status === 201) {
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
       showSuccess(res?.data?.message);
       onClose();
@@ -205,7 +204,6 @@ const ChannelInviteModal = () => {
     if (res?.status === 200 || res?.status === 201) {
       dispatch({
         type: ACTIONS.CHANNEL_CALLBACK,
-        payload: !state?.channelCallback,
       });
       showSuccess(res?.data?.message || "Added everyone to the channel");
       onClose();
